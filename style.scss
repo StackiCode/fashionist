@@ -1,0 +1,250 @@
+$src_1: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/karlie-kloss-is-seen-wearing-a-baby-blue-ralph-lauren-news-photo-1575557364.jpg";
+$src_2: "https://cdn.shopify.com/s/files/1/0188/9032/products/Black_mirrored_modern_sunglasses_womens_2.jpg?v=1547886299";
+$src_3: "https://cdn.cliqueinc.com/posts/280786/affordable-italian-clothing-brands-280786-1561564449874-main.700x0c.jpg";
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap");
+$cur-up: cur_up;
+$cur-down: cur_down;
+$next-up: next_up;
+$next-down: next_down;
+$quote_animate: quote_animate;
+$t: 1s;
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  font-size: 62.5%;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+}
+%page {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #eee;
+  transition: all $t;
+}
+%slide {
+  position: relative;
+  width: 1rem;
+  height: 1rem;
+  padding: 0;
+  margin-top: 0.3rem;
+  margin-bottom: 0.3rem;
+  border-radius: 50%;
+  border: 2px solid gray;
+  transition: all $t;
+}
+%adjust_flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.page_1 {
+  @extend %page;
+  background: no-repeat center/cover url($src_1), rgba(92, 92, 92, 0.5);
+  background-blend-mode: luminosity;
+}
+.page_2 {
+  @extend %page;
+  background: no-repeat center/cover url($src_2), rgba(92, 92, 92, 0.5);
+  background-blend-mode: luminosity;
+}
+.page_3 {
+  @extend %page;
+  background: no-repeat center/cover url($src_3), rgba(92, 92, 92, 0.5);
+  background-blend-mode: luminosity;
+}
+
+.slide {
+  @extend %adjust_flex;
+  flex-direction: column;
+  position: absolute;
+  width: 4rem;
+  height: 30rem;
+  top: 0;
+  right: 2%;
+  z-index: 1;
+}
+
+.slide_up {
+  @extend %adjust_flex;
+  margin-bottom: 0.5rem;
+  width: 1.4rem;
+  height: 1.4rem;
+  z-index: 1;
+  color: gray;
+  border: 2px solid gray;
+  border-radius: 50%;
+  transition: all 0.5s;
+  & svg {
+    width: 1rem;
+    height: 1rem;
+    pointer-events: none;
+    fill: gray;
+    transform: rotate(180deg);
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: #b0acac;
+  }
+}
+
+.slide_down {
+  @extend %adjust_flex;
+  width: 1.4rem;
+  height: 1.4rem;
+  margin-top: 0.5rem;
+  font-size: 2.5rem;
+  z-index: 1;
+  color: gray;
+  border: 2px solid gray;
+  border-radius: 50%;
+  transition: all 0.5s;
+  & svg {
+    width: 1rem;
+    height: 1rem;
+    pointer-events: none;
+    fill: gray;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: #b0acac;
+  }
+}
+.slide_1,
+.slide_2,
+.slide_3 {
+  @extend %slide;
+  @extend %adjust_flex;
+  cursor: pointer;
+  &:hover {
+    background-image: radial-gradient(gray 30%, transparent 100%);
+  }
+}
+.page_quote {
+  position: absolute;
+  border: 3px solid gray;
+  background-color: rgba(160, 160, 160, 0.5);
+  width: 30rem;
+  top: 60%;
+  left: 40%;
+}
+.quote {
+  font-family: "Playfair Display";
+  font-style: italic;
+  font-size: 1.3rem;
+  color: black;
+  hyphens: auto;
+}
+.slide_animate {
+  background-image: radial-gradient(gray 30%, transparent 100%);
+}
+.quote_author {
+  font-family: "Playfair Display";
+  font-style: normal;
+  font-size: 1.5rem;
+  hyphens: auto;
+}
+.cur_up {
+  -webkit-animation-name: $cur-up;
+  -webkit-animation-duration: $t;
+  -webkit-animation-iteration-count: forwards;
+}
+.cur_down {
+  -webkit-animation-name: $cur-down;
+  -webkit-animation-duration: $t;
+  -webkit-animation-iteration-count: forwards;
+}
+.next_up {
+  -webkit-animation-name: $next-up;
+  -webkit-animation-duration: $t;
+  -webkit-animation-iteration-count: forwards;
+}
+.next_down {
+  -webkit-animation-name: $next-down;
+  -webkit-animation-duration: $t;
+  -webkit-animation-iteration-count: forwards;
+}
+.quote_animate {
+  -webkit-animation-name: $quote_animate;
+  -webkit-animation-duration: $t;
+}
+@keyframes cur_up {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+}
+@keyframes cur_down {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+@keyframes next_up {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes next_down {
+  from {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes quote_animate {
+  from {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.cart {
+  position: absolute;
+  @extend %adjust_flex;
+  top: 1%;
+  right: 1%;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 5px;
+  background-color: rgba(160, 160, 160, 0.3);
+  cursor: pointer;
+  transition: all 0.5s;
+  & svg {
+    width: 1.6rem;
+    height: 1.6rem;
+    fill: gray;
+  }
+  &:hover {
+    transform: scale(1.2);
+  }
+}
